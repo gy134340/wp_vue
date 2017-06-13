@@ -5,7 +5,13 @@
   "name": "ws",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-latest": "^6.24.1",
+    "html-webpack-plugin": "^2.28.0",
+    "webpack": "^2.6.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

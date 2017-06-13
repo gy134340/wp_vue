@@ -1,0 +1,121 @@
+/*
+	1. pass in multiple arguments in a list or a map format. need ...
+*/
+
+/* @include transform(rotate(-180deg)) */
+@mixin transform($transformation) {
+	transform: $transformation;
+  -webkit-transform: $transformation;
+  -moz-transform: $transformation;
+  -ms-transform: $transformation;
+  -o-transform: $transformation; 
+}
+
+@mixin transition($time){
+  transition: $time;
+  -webkit-transition: $time;
+  -moz-transition: $time;
+  -o-transition: $time;
+}
+/* @include transform-style(preserve-3d); */
+@mixin transform-style($style) {
+	transform-style: $style;
+  -moz-transform-style: $style;
+  -o-transform-style: $style;
+  -ms-transform-style: $style;
+  -webkit-transform-style: $style;
+}
+
+/* pass argu or set hidden*/
+@mixin backface-visibility($visibility: hidden) {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+}
+
+/* @include photo-content('test'); */
+@mixin photo-content($file) {
+	content: url(#{$file}.jpg);
+  object-fit: cover;
+}
+
+
+@mixin text-hover($color) {
+	&:hover {
+		color: $color;
+	};
+}
+
+
+/* function more transparent */
+$lagoon-blue: fade-out(#62fdca, 0.5);
+
+/* allow + - * / % */
+$color: #010203 + #040506;
+
+/* list */
+$list: (orange, purple, teal);
+
+@each $item in $list {
+  .#{$item} {
+    background: $item;
+  }
+}
+
+/* this is for */
+$total: 10; //Number of .ray divs in our html
+$step: 360deg / $total; //Used to compute the hue based on color-wheel
+
+
+.ray {
+  height: 30px;
+}
+
+@for $i from 1 through $total {
+  .ray:nth-child(#{$i}) {
+    background: adjust-hue(blue, $i * $step);
+   }
+}
+
+/* width: if( $condition, $value-if-true, $value-if-false); */
+width: if($i % 2 == 0, 300px, 350px);
+margin-left: if($i % 2 == 0, 0px, 50px);
+
+
+/* 导入文件 */
+@import "helper/mixins";
+
+@import url(https://fonts.googleapis.com/css?family=Pacifico); 
+
+
+/*
+They use a _ prefix notation in the file name that tells Sass to hold off on compiling the file 
+individually and instead import it.
+
+_filename.scss
+*/
+
+
+
+.lemonade {
+  border: 1px yellow;
+  background-color: #fdd;
+}
+.strawberry {
+  @extend .lemonade;
+  border-color: pink;
+}
+
+
+/*Sass anticipated this and allows for a special type of
+ selector called a placeholder, which behaves just like a class or id selector, 
+ but use the % notation instead of # or .
+ Placeholders prevent rules from being rendered to CSS on their own and only become active once they are extended anywhere an id or class could be extended.*/
+
+
+
+
+
+
