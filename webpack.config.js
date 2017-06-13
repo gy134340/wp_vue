@@ -2,8 +2,6 @@ var path = require('path');
 var htmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 
-
-
 module.exports = {
 	entry : {
 		app: './src/app.js',
@@ -13,13 +11,20 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 		filename: '[name].js'
 	},
-	externals: {
-		jquery: "jQuery",
-	},
 	module: {
 		rules: [
 			{test: /\.(js|jsx)$/, use: 'babel-loader'}
 		]	
+	},
+	//  这种情况会全部打包进 app.js
+	resolve: {
+		alias: {
+			jquery: path.resolve(__dirname, 'src/lib/jquery-1.11.1.min.js'),
+			Vue: path.resolve(__dirname, 'src/lib/vue.js'),
+			Vuex: path.resolve(__dirname, 'src/lib/vuex.js'),
+			VueRouter: path.resolve(__dirname, 'src/lib/vue-router.min.js'),
+			axios: path.resolve(__dirname, 'src/lib/axios.min.js')
+		}
 	},
 	plugins: [
 		new webpack.optimize.UglifyJsPlugin(),
@@ -33,10 +38,10 @@ module.exports = {
 			template: './index.html',
 			inject:'body',
 			hash: true,
-			chunks: ['app','vendors']
+			chunks: ['app']
 		}),
 
-		// new  webpack.optimize.CommonsChunkPlugin('common.js', ['app','vendors'])
+		// new  webpack.optimize.CommonsChunkPlugin('vendors.js', ['vendors'])
 
 	]
 	
