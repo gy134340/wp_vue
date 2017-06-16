@@ -1,5 +1,6 @@
 var path = require('path');
 var htmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 
 
@@ -42,7 +43,15 @@ module.exports = {
 				test: /\.(js|jsx)$/,
 				use: 'babel-loader',
 				exclude: path.resolve(__dirname, 'node_modules/')
-			}
+			},
+			{
+		        test: /\.scss$/,
+		        use: ExtractTextPlugin.extract({
+		          fallback: 'style-loader',
+		          //resolve-url-loader may be chained before sass-loader if necessary
+		          use: ['css-loader', 'sass-loader']
+		        })
+		    }
 		]	
 	},
 	// resolve: {
@@ -66,8 +75,13 @@ module.exports = {
 	 //        filename:"vendor.js",
 	 //        minChunks: Infinity
 	 //    }),
-		
+	 //    
 	 	new webpack.HotModuleReplacementPlugin(),
+
+	 	new ExtractTextPlugin({
+	 		filename: 'style.css'
+	 	}),
+
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['vendors','manifest'],
 			minChunks: Infinity
@@ -79,6 +93,7 @@ module.exports = {
 			hash: true,
 			chunks: ['vendors', 'manifest', 'app']
 		}),
+
 
 	]
 	

@@ -1,1 +1,1 @@
-webpackJsonp([1],{6:function(u,e,t){"use strict";var a=t(2),p=t(0);t(1),new a({el:"#app",data:{message:"hello stupid, such a stupid guy fuck"},mounted:function(){p("#app ul li").html("from jquery")}})}},[6]);
+webpackJsonp([1],{6:function(u,t){},7:function(u,t,e){"use strict";var n=e(2),a=e(0);e(1),e(6),new n({el:"#app",data:{message:"hello stupid, such a stupid guy fuck"},mounted:function(){a("#app ul li").html("from jquery")}})}},[7]);

@@ -1,5 +1,6 @@
 var path = require('path');
 var htmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 
 // note: resolve 放在 entry 前方，否则 vendor 读不到
@@ -42,7 +43,14 @@ module.exports = {
 				use: 'babel-loader',
 				exclude: path.resolve(__dirname, 'node_modules/')
 			},
-
+			{
+		        test: /\.scss$/,
+		        use: ExtractTextPlugin.extract({
+		          fallback: 'style-loader',
+		          //resolve-url-loader may be chained before sass-loader if necessary
+		          use: ['css-loader', 'sass-loader']
+		        })
+		    }
 			// enable this,you can change publicPath to use CDN
 			// {test: /\.(js|jsx)$/, use: 'url-loader?limit=8192'}
 		]	
@@ -70,6 +78,11 @@ module.exports = {
 	 //    }),
 		
 	 	// new webpack.HotModuleReplacementPlugin(),
+	 	
+	 	new ExtractTextPlugin({
+	 		filename: 'style.css'
+	 	}),
+
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['vendors','manifest'],
 			minChunks: Infinity
