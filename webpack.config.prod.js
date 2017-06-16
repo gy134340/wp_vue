@@ -50,9 +50,14 @@ module.exports = {
 		          //resolve-url-loader may be chained before sass-loader if necessary
 		          use: ['css-loader', 'sass-loader']
 		        })
-		    }
+		    },
+		    {
+				//匹配后缀为jpe?g|png|gif|svg的image
+				test: /\.(jpe?g|png|gif|svg)$/,
+				use: 'url-loader?limit=8192'
+			}
 			// enable this,you can change publicPath to use CDN
-			// {test: /\.(js|jsx)$/, use: 'url-loader?limit=8192'}
+			// {test: /\.(png|jpg)$/, use: 'url-loader?limit=8192'}
 		]	
 	},
 	// resolve: {
