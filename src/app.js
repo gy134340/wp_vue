@@ -7,7 +7,7 @@ var index = require('./index.scss');
 var app = new Vue({
 	el: '#app',
 	data: {
-		message: 'hello testssaalaalla test nnn h'
+		message: 'hello'
 	},
 	mounted: function() {
 		$('#app ul li').html('from jquery')

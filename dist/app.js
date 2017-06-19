@@ -1,0 +1,1 @@
+webpackJsonp([1],{6:function(e,n){},7:function(e,n,t){"use strict";var a=t(2),o=t(0);t(1),t(6),new a({el:"#app",data:{message:"hello"},mounted:function(){o("#app ul li").html("from jquery")}})}},[7]);
